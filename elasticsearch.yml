@@ -1,21 +1,16 @@
-
 apiVersion: v1
 kind: List
 items:
-- apiVersion: apps/v1
+- apiVersion: apps/v1beta1
   kind: StatefulSet
   metadata:
     name: elasticsearch
-    namespace: observability  
     labels:
       app: elasticsearch
       app.kubernetes.io/name: elasticsearch
       app.kubernetes.io/component: storage-backend
       app.kubernetes.io/part-of: jaeger
   spec:
-    selector:
-      matchLabels:
-        app: elasticsearch
     serviceName: elasticsearch
     replicas: 1
     template:
@@ -59,7 +54,6 @@ items:
   kind: Service
   metadata:
     name: elasticsearch
-    namespace: observability  
     labels:
       app: elasticsearch
       app.kubernetes.io/name: elasticsearch
